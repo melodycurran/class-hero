@@ -16,6 +16,8 @@
   grid-template-rows: 30% 1fr 20px;
   justify-items: center;
 
+  width: 100%;
+  background-color: var(--french-gray);
 }
 
 .header {
@@ -23,7 +25,7 @@
   text-align: center;
   position: fixed;
   grid-row: 1 /2;
-  background-color: white;
+  background-color: var(--french-gray);
 }
 
 .main {

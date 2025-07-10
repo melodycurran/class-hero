@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --french-gray: rgb(187, 187, 191);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,7 @@
 html,
 body {
   max-width: 100vw;
+  background-color: var(--french-gray);
 }
 
 body {
