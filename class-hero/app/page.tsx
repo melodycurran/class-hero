@@ -1,95 +1,50 @@
+'use client'
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [scrollPosition, setscrollPosition] = useState(0)
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+  function handleScroll() {
+    setscrollPosition(window.pageYOffset);
+    console.log(window.pageYOffset)
+    console.log(scrollPosition)
+  }
+
+  return (
+    <div className={styles.homepage} onScroll={handleScroll}>
+
+      {/* <div className={`${styles.categories} ${styles.parallax} ${styles.para1}`}> */}
+      <ul className={`${styles.categories} ${styles.parallax} ${styles.para1}`}>
+        <li><Image src='/reading.svg' width={80} height={80} alt="reading" /><span>READING</span></li>
+        <li><Image src='/math.svg' width={80} height={80} alt="math" /><span>MATH</span></li>
+        <li><Image src='/science.svg' width={80} height={80} alt="science" /><span>SCIENCE</span></li>
+        <li><Image src='/filipino.svg' width={80} height={80} alt="filipino" /><span>FILIPINO</span></li>
+      </ul>
+      {/* </div> */}
+
+
+      <div className={`${styles.homepageCopy} ${styles.parallax}`} >
+        <h2>Unlock Potential</h2>
+        <h2>Engage. Learn. Grow.</h2>
+        <h2>Expertly Crafted</h2>
+      </div>
+
+      <div className={`${styles.parallax} ${styles.para2}`}>
+        <h2>Time-Saving</h2>
+        <h2>Educator Platform</h2>
+        <h2>Be the hero of every lesson!</h2>
+      </div>
+
+      <div className={`${styles.homepageCopy} ${styles.parallax}`}>
+        <h2>Unlock Potential</h2>
+        <h2>Engage. Learn. Grow.</h2>
+        <h2>Expertly Crafted</h2>
+      </div>
     </div>
+
+
   );
 }
