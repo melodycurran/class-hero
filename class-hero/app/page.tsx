@@ -17,12 +17,12 @@ export default function Home() {
     <div className={styles.homepage} onScroll={handleScroll}>
 
       {/* <div className={`${styles.categories} ${styles.parallax} ${styles.para1}`}> */}
-      <ul className={`${styles.categories} ${styles.parallax} ${styles.para1}`}>
+      {/* <ul className={`${styles.categories}${styles.para1}`}>
         <li><Image src='/reading.svg' width={80} height={80} alt="reading" /><span>READING</span></li>
         <li><Image src='/math.svg' width={80} height={80} alt="math" /><span>MATH</span></li>
         <li><Image src='/science.svg' width={80} height={80} alt="science" /><span>SCIENCE</span></li>
         <li><Image src='/filipino.svg' width={80} height={80} alt="filipino" /><span>FILIPINO</span></li>
-      </ul>
+      </ul> */}
       {/* </div> */}
 
 

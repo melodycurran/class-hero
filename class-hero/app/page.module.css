@@ -13,9 +13,8 @@
   --button-secondary-hover: #f2f2f2;
 
   display: grid;
-  grid-template-rows: 25% 1fr 20px;
+  grid-template-rows: 30% 1fr 20px;
   justify-items: center;
-  height: 100vh;
 
 }
 
@@ -29,6 +28,14 @@
 
 .main {
   grid-row: 2 / 3;
+}
+
+.button {
+  width: 20%;
+  max-width: 50%;
+  font-weight: bolder;
+  padding: .50rem;
+  margin: 1rem;
 }
 
 .header h1 {
@@ -75,27 +82,51 @@
 }
 
 /*Homepage*/
-
-.categories {
-  margin-top: 2rem;
+/* .categories {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
-}
+} */
 
-.categories li {
+/* .categories li {
   list-style-type: none;
   display: flex;
   align-items: center;
   font-size: larger;
   padding: 10px;
-}
+} */
 
 /*Parallax*/
 .parallax,
-.homepageCopy {
-  height: 100vh;
+.homepageCopy,
+.para1 {
+  height: 50vh;
+}
+
+
+/*Subject List*/
+.generatorContainer {
+  height: 80vh;
+}
+
+.generatorContainer textarea {
+  width: 80%;
+  height: 20vh;
+}
+
+.categoriesList {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.categoriesList li {
+  margin: 0 2rem;
+}
+
+/*Worksheet Library*/
+.libraryContainer {
+  height: 80vh;
 }
 
 
@@ -111,7 +142,6 @@
 
 }
 
-
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;
@@ -122,8 +152,6 @@
     --button-secondary-hover: #1a1a1a;
   }
 }
-
-
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
