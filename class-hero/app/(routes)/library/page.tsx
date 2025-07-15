@@ -1,10 +1,17 @@
 import Categories from "@/app/ui/worksheets/categories"
 import styles from "../../page.module.css"
+import { Suspense } from "react"
 
 export default function WorksheetLibrary() {
+    function Fallback() {
+        return <div>Loading types...</div>
+    }
+
     return (
         <div className={styles.libraryContainer}>
-            {/* <Categories /> */}
+            <Suspense fallback={<Fallback />}>
+                <Categories />
+            </Suspense>
             <h1>Worksheet Library</h1>
         </div>
     )
