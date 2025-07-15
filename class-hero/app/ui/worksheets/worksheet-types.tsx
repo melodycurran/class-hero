@@ -1,4 +1,5 @@
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
+import { Suspense } from "react"
 
 export default function WorksheetType({ type }: { type: string }) {
     const searchParams = useSearchParams()
@@ -11,33 +12,46 @@ export default function WorksheetType({ type }: { type: string }) {
         replace(`${pathname}?${params.toString()}`)
     }
 
+    function Fallback() {
+        return <div>Loading types...</div>
+    }
+
+
     switch (type) {
         case 'reading':
             return (
                 <>
-                    <h3 onClick={() => handleAddParams('matching-list')}>Matching List</h3>
-                    <h3 onClick={() => handleAddParams('spelling-test')}>Spelling Test</h3>
-                    <h3 onClick={() => handleAddParams('word-tracer')}>Word Tracer</h3>
+                    <Suspense fallback={<Fallback />}>
+                        <h3 onClick={() => handleAddParams('matching-list')}>Matching List</h3>
+                        <h3 onClick={() => handleAddParams('spelling-test')}>Spelling Test</h3>
+                        <h3 onClick={() => handleAddParams('word-tracer')}>Word Tracer</h3>
+                    </Suspense>
                 </>
             )
         case 'science':
             return (
                 <>
-                    <h3 onClick={() => handleAddParams('multiple-choice')}>Multiple Choice</h3>
+                    <Suspense fallback={<Fallback />}>
+                        <h3 onClick={() => handleAddParams('multiple-choice')}>Multiple Choice</h3>
+                    </Suspense>
                 </>
             )
         case 'mathematics':
             return (
                 <>
-                    <h3 onClick={() => handleAddParams('addition')}>Addition Worksheet</h3>
-                    <h3 onClick={() => handleAddParams('subtraction')}>Subtraction Worksheet</h3>
-                    <h3 onClick={() => handleAddParams('multiplication')}>Multiplication Worksheet</h3>
+                    <Suspense fallback={<Fallback />}>
+                        <h3 onClick={() => handleAddParams('addition')}>Addition Worksheet</h3>
+                        <h3 onClick={() => handleAddParams('subtraction')}>Subtraction Worksheet</h3>
+                        <h3 onClick={() => handleAddParams('multiplication')}>Multiplication Worksheet</h3>
+                    </Suspense>
                 </>
             )
         case 'filipino':
             return (
                 <>
-                    <h3 onClick={() => handleAddParams('multiple-choice')}>Multiple Choice</h3>
+                    <Suspense fallback={<Fallback />}>
+                        <h3 onClick={() => handleAddParams('multiple-choice')}>Multiple Choice</h3>
+                    </Suspense>
                 </>
             )
 
