@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/parallax.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/parallax.ts", "app/ui/button.jsx", "app/ui/navigation.jsx", "app/ui/header.jsx", "app/ui/fonts.ts", "app/ui/footer.jsx", "app/layout.tsx", "app/(routes)/worksheet-generator/page.jsx"],
   "exclude": ["node_modules"]
 }

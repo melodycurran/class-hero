@@ -15,8 +15,6 @@
   display: grid;
   grid-template-rows: 30% 1fr 20px;
   justify-items: center;
-
-  width: 100%;
   background-color: var(--french-gray);
 }
 
@@ -30,6 +28,7 @@
 
 .main {
   grid-row: 2 / 3;
+  width: 80%;
 }
 
 .button {
@@ -109,6 +108,7 @@
 
 /*Subject List*/
 .generatorContainer {
+  width: 80vh;
   height: 80vh;
 }
 
@@ -118,6 +118,7 @@
 }
 
 .categoriesList {
+  width: 100%;
   display: flex;
   margin-bottom: 2rem;
 }
@@ -131,6 +132,19 @@
   height: 80vh;
 }
 
+/*Worksheet Generator*/
+.worksheetPreviewContainer {
+  width: 300px;
+  height: 400px;
+  background-color: red;
+}
+
+.worksheetPreview {
+  background-color: white;
+  width: 95%;
+  height: 95%;
+  margin: 0 auto;
+}
 
 /*Small Screen*/
 @media screen and (max-width: 700px) {

@@ -1,4 +1,4 @@
-import { Jua, Barrio } from "next/font/google";
+import { Jua, Barrio, Raleway_Dots } from "next/font/google";
 
 
 export const barrio = Barrio({
@@ -12,3 +12,8 @@ export const jua = Jua({
     subsets: ["latin"],
     weight: '400'
 });
+
+export const ralewayDots = Raleway_Dots({
+    subsets: ["latin"],
+    weight: '400'
+})
