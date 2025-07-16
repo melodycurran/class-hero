@@ -42,7 +42,8 @@ export default function WorksheetGenerator() {
                         <Button>
                             <Link href='/worksheet-generator/pdf' target='_blank'>Generate PDF</Link>
                         </Button>
-                    </>) : (<WorksheetType type={category} />)}
+                    </>) : (
+                    <Suspense fallback={<WorksheetSkeleton />}><WorksheetType type={category} /></Suspense>)}
             </div>
         </Suspense>
 

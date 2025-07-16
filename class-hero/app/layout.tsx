@@ -4,6 +4,8 @@ import { jua } from './ui/fonts'
 import styles from './page.module.css'
 import Header from "./ui/header";
 import Footer from "./ui/footer"
+import { Suspense } from "react";
+import { WorksheetSkeleton } from "./ui/loadingSkeleton";
 
 
 export const metadata: Metadata = {
@@ -23,7 +25,9 @@ export default function RootLayout({
         <div id="app" className={styles.app}>
           <Header />
           <main className={styles.main}>
-            {children}
+            <Suspense fallback={<WorksheetSkeleton />}>
+              {children}
+            </Suspense>
           </main>
           <Footer />
         </div>
