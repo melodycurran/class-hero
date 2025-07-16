@@ -1,36 +1,49 @@
 "use client"
 
 import styles from "../../page.module.css"
-import Categories from "@/app/ui/worksheets/categories"
+import Categories from "@/app/(routes)/worksheet-generator/categories"
 import Button from "@/app/ui/button"
-// import Preview from "@/app/ui/worksheets/preview"
+import Preview from "./preview"
 import { useState } from "react"
 import { useSearchParams } from "next/navigation"
-import WorksheetType from "@/app/ui/worksheets/worksheet-types"
+import WorksheetType from "@/app/(routes)/worksheet-generator/worksheet-types"
+import { WorksheetSkeleton } from "../../ui/loadingSkeleton"
+import { Suspense } from "react"
+import WordTracer from "./word-tracer"
+import Link from "next/link"
 
 export default function WorksheetGenerator() {
     const [input, setInput] = useState("")
     const searchParams = useSearchParams()
-    const params = searchParams.get('category')?.toString()
+    const category = searchParams.get('category')?.toString()
+    const type = searchParams.get('type')?.toString()
 
     function handleChange(e) {
         setInput(e.target.value)
     }
 
+
     return (
 
-        <div className={styles.generatorContainer}>
-            <Categories />
-            <WorksheetType type={params} />
-            {/* <h1>Worksheet Generator</h1>
-            <textarea
-                value={input}
-                onChange={handleChange}
-            />
+        <Suspense fallback={<WorksheetSkeleton />}>
+            <div className={styles.generatorContainer}>
+                <Categories />
+                {category === 'reading' && type === 'word-tracer' ? (
+                    <>
+                        <h1>Worksheet Generator - {type.split("-")}</h1>
+                        <textarea value={input} onChange={handleChange}
+                        />
+                        <Preview>
+                            <WordTracer>{input}</WordTracer>
+                        </Preview>
 
-            <Button>Generate</Button> */}
-        </div>
-
+                        <Button>
+                            <Link href='/worksheet-generator/pdf' target='_blank'>Generate PDF</Link>
+                        </Button>
+                    </>) : (<WorksheetType type={category} />)}
+            </div>
+        </Suspense>
 
     )
+
 }

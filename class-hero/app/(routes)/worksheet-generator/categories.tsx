@@ -17,18 +17,15 @@ export default function Categories() {
         replace(`${pathname}?${splitParams[0]}`)
     }
 
-    function Fallback() {
-        return <div>Loading types...</div>
-    }
 
     return (
         <ul className={styles.categoriesList}>
-            <Suspense fallback={<Fallback />}>
+            
                 <li onClick={() => handleCategory('reading')}>Reading</li>
                 <li onClick={() => handleCategory('science')}>Science</li>
                 <li onClick={() => handleCategory('mathematics')}>Mathematics</li>
                 <li onClick={() => handleCategory('filipino')}>Filipino</li>
-            </Suspense>
+           
         </ul>
     )
 }

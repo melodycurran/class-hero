@@ -6,7 +6,7 @@ export default function Navigation() {
         <nav className={styles.nav}>
             <ul>
                 <li><Link href="/library">Browse</Link></li>
-                <li><Link href="/worksheet-generator">Worksheet Generator</Link></li>
+                <li><Link href="/worksheet-generator?category=reading">Worksheet Generator</Link></li>
                 <li><Link href="/donate">Donate</Link></li>
                 <li><Link href="/account">Account</Link></li>
             </ul>
