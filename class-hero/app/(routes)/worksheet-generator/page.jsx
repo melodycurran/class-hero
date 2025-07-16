@@ -27,7 +27,9 @@ export default function WorksheetGenerator() {
 
         <Suspense fallback={<WorksheetSkeleton />}>
             <div className={styles.generatorContainer}>
-                <Categories />
+                <Suspense fallback={<WorksheetSkeleton />}>
+                    <Categories />
+                </Suspense>
                 {category === 'reading' && type === 'word-tracer' ? (
                     <>
                         <h1>Worksheet Generator - {type.split("-")}</h1>
