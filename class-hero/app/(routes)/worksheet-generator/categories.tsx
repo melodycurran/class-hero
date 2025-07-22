@@ -1,7 +1,6 @@
 'use client'
 import styles from "../../page.module.css"
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
-import { Suspense } from "react"
 
 export default function Categories() {
     const searchParams = useSearchParams()
@@ -17,15 +16,12 @@ export default function Categories() {
         replace(`${pathname}?${splitParams[0]}`)
     }
 
-
     return (
         <ul className={styles.categoriesList}>
-            
-                <li onClick={() => handleCategory('reading')}>Reading</li>
-                <li onClick={() => handleCategory('science')}>Science</li>
-                <li onClick={() => handleCategory('mathematics')}>Mathematics</li>
-                <li onClick={() => handleCategory('filipino')}>Filipino</li>
-           
+            <li onClick={() => handleCategory('reading')}>Reading</li>
+            <li onClick={() => handleCategory('science')}>Science</li>
+            <li onClick={() => handleCategory('mathematics')}>Mathematics</li>
+            <li onClick={() => handleCategory('filipino')}>Filipino</li>
         </ul>
     )
 }

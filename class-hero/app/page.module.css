@@ -191,10 +191,13 @@
 
 /*Tracer*/
 .tracer {
-  font-size: 1.5rem;
-  border-top: 1px dotted gray;
-  text-decoration: line-through 1px dotted gray;
-  border-bottom: 1px dotted gray;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  line-break: auto;
+  max-width: 35px;
+  font-size: 32px;
+  text-decoration: overline underline line-through solid 1px gray;
+  line-height: 1.5em;
 }
 
 /*PDF Viewer*/
