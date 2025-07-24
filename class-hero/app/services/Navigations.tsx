@@ -1,0 +1,42 @@
+interface Nav {
+    name: string
+    path: string
+}
+
+export const NavMenu: Nav[] = [
+    {
+        name: "Library",
+        path: "/library"
+    },
+    {
+        name: "Worksheet-generator",
+        path: "/worksheet-generator"
+    },
+    {
+        name: "Donate",
+        path: "/donate"
+    },
+    {
+        name: "Account",
+        path: "/account"
+    },
+]
+
+export const GeneratorMenu: Nav[] = [
+    {
+        name: "Reading",
+        path: "/worksheet-generator/reading"
+    },
+    {
+        name: "Science",
+        path: "/worksheet-generator/science"
+    },
+    {
+        name: "Mathematics",
+        path: "/worksheet-generator/math"
+    },
+    {
+        name: "Filipino",
+        path: "/worksheet-generator/filipino"
+    },
+]

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import "./ui/globals.css";
-import { jua } from './ui/fonts'
-import styles from './page.module.css'
-import Header from "./ui/header";
-import Footer from "./ui/footer"
+import "@/app/globals.css";
+import { jua } from '../components/ui/fonts'
+import Header from "../components/ui/header";
+import Footer from "../components/ui/footer"
 import { Suspense } from "react";
-import { WorksheetSkeleton } from "./ui/loadingSkeleton";
-
+import { Skeleton } from "@/components/ui/skeleton"
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Class Hero",
@@ -22,11 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jua.className}`}>
 
-        <div id="app" className={styles.app}>
+        <div id="app" className="w-5/6 h-screen grid gap-2 grid-rows-[10%_1fr_50px] justify-self-center">
           <Header />
-          <main className={styles.main}>
-            <Suspense fallback={<WorksheetSkeleton />}>
+          <main>
+            <Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
               {children}
+              <Toaster />
             </Suspense>
           </main>
           <Footer />

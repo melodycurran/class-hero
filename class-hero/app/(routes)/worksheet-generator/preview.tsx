@@ -1,24 +1,23 @@
 import React, { forwardRef } from "react"
-import styles from "../../page.module.css"
-import Button from "@/app/ui/button"
+import { Button } from "@/components/ui/button"
 
 interface PreviewProps {
     children: React.ReactNode,
-    clickAction: (event: React.MouseEvent<HTMLButtonElement>) => void
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 type RefElement = HTMLDivElement
 
 export const Preview = forwardRef<RefElement, PreviewProps>(
-    ({ children, clickAction }, ref) => {
+    ({ children, onClick }, ref) => {
         return (
 
-            <div className={styles.worksheetPreviewContainer}>
+            <div className="w-2/5 flex flex-col items-center bg-red previewContainer">
                 <h3>Preview</h3>
-                <div className={styles.worksheetPreview} ref={ref}>
+                <div ref={ref} className="w-full h-45 bg-white texttypecontainer">
                     {children}
                 </div>
-                <Button onClick={clickAction}>Download</Button>
+                <Button onClick={onClick} variant="outline" className="w-1/2 texinputBtn">Download</Button>
             </div>
 
 

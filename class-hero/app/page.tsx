@@ -1,6 +1,5 @@
 'use client'
 import Image from "next/image";
-import styles from "./page.module.css";
 import { useState } from "react";
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.homepage} onScroll={handleScroll}>
+    <div onScroll={handleScroll} className="text-center">
 
       {/* <div className={`${styles.categories} ${styles.parallax} ${styles.para1}`}> */}
       {/* <ul className={`${styles.categories}${styles.para1}`}>
@@ -26,19 +25,19 @@ export default function Home() {
       {/* </div> */}
 
 
-      <div className={`${styles.homepageCopy} ${styles.parallax}`} >
+      <div>
         <h2>Unlock Potential</h2>
         <h2>Engage. Learn. Grow.</h2>
         <h2>Expertly Crafted</h2>
       </div>
 
-      <div className={`${styles.parallax} ${styles.para2}`}>
+      <div>
         <h2>Time-Saving</h2>
         <h2>Educator Platform</h2>
         <h2>Be the hero of every lesson!</h2>
       </div>
 
-      <div className={`${styles.homepageCopy} ${styles.parallax}`}>
+      <div>
         <h2>Unlock Potential</h2>
         <h2>Engage. Learn. Grow.</h2>
         <h2>Expertly Crafted</h2>
