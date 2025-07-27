@@ -1,28 +1,22 @@
-import Categories from "@/app/(routes)/worksheet-generator/categories"
 import { Suspense } from "react"
+import WorksheetSkeleton from "@/components/ui/worksheetSkeleton"
+import SearchBar from "@/components/ui/searchbar"
+import LibrarySection from "@/components/ui/librarySections"
 
-import Image from "next/image"
-
-
-
-export default function WorksheetLibrary() {
+export default async function WorksheetLibrary(props: {
+    searchParams?: Promise<{
+        query?: string
+    }>
+}) {
+    const searchParams = await props.searchParams
+    const query = searchParams?.query || ''
 
     return (
-        <div>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Categories />
-            </Suspense>
-            <h1>Worksheet Library</h1>
-
-            <div>
-                <section>
-                    <Image src="/worksheets/placeholder.webp" width={80} height={100} alt="Sample Image" />
-                    <h3>Worksheet title</h3>
-                    <p>$3.00</p>
-                    <button>Add to Cart</button>
-                </section>
-
-            </div>
-        </div>
+        <div className="libraryContainer">
+            <Suspense fallback={<WorksheetSkeleton />}>
+                <SearchBar />
+                <LibrarySection term={query} />
+            </Suspense >
+        </div >
     )
 }

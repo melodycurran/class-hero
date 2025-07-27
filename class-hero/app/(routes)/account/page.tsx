@@ -42,7 +42,7 @@ export default function Login() {
             const data = { data: inputdata }
 
             try {
-                const response = await fetch("/account/api", {
+                const response = await fetch("/api/login", {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json'
@@ -68,7 +68,7 @@ export default function Login() {
         }
     }
     return (
-        <div className="w-1/3 loginFormContainer font-sans bg-white rounded-(--radius)">
+        <div className="w-1/3 min-w-64 loginFormContainer font-sans bg-white rounded-(--radius)">
             <h2>Login</h2>
 
             <form onSubmit={handleSubmit}>

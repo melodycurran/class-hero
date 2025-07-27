@@ -25,7 +25,8 @@ a {
     padding-left: 10px;
 }
 
-#readingTextArea {
+#readingTextArea,
+button {
     padding: 10px;
 }
 
@@ -68,6 +69,64 @@ a {
     padding: 2rem;
 }
 
+.worksheet-editor-menu-div {
+    width: 80%;
+    padding: .70rem 0;
+}
+
+/* .canvasSize {
+    margin-top: 1rem;
+} */
+
+.recentWorksheetBtn {
+    margin-top: 2rem;
+    padding: .5rem;
+}
+
+.libraryWorksheets {
+    margin-top: 2rem;
+}
+
+.libraryItems {
+    padding: 1rem;
+}
+
+.searchContainer {
+    margin: 2rem auto;
+}
+
+.searchInput {
+    padding-left: 1.5rem;
+}
+
+.searchIcon {
+    padding: 3px;
+}
+
+.shoppingCartIcon {
+    padding: 5px;
+    margin: 2px;
+}
+
+.individualWorksheetContainer,
+.individualSection {
+    margin: 2rem auto;
+}
+
+.individualWorksheetContainer div {
+    padding: 0 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.cartPopOver {
+    padding: .75rem;
+}
+
+.cartSection {
+    border-bottom: solid var(--french-gray) 1px;
+    margin: 6px;
+}
+
 :root {
     --french-gray: rgb(187, 187, 191);
     --radius: 0.625rem;
@@ -103,6 +162,7 @@ a {
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --worksheetsidebarwidth: 10%;
 }
 
 html,

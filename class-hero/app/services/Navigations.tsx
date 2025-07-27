@@ -9,7 +9,7 @@ export const NavMenu: Nav[] = [
         path: "/library"
     },
     {
-        name: "Worksheet-generator",
+        name: "Worksheet Generator",
         path: "/worksheet-generator"
     },
     {

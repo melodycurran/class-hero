@@ -21,7 +21,7 @@ export default function Dashboard() {
 
     async function handleLogout() {
         try {
-            const response = await fetch("/account/api/logout", {
+            const response = await fetch("/api/logout", {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
@@ -52,7 +52,7 @@ export default function Dashboard() {
                                 {SidebarOptions.map((option) => (
                                     <SidebarMenuItem key={option.title}>
                                         <SidebarMenuButton asChild>
-                                            <a href={option.url}>
+                                            <a href={option.url} target='_blank'>
                                                 <option.icon />
                                                 <span>{option.title}</span>
                                             </a>
@@ -73,10 +73,6 @@ export default function Dashboard() {
                 <div>
                     <h3>Transaction Summary</h3>
                 </div>
-                <div>
-                    <h3>Latest Worksheet Design</h3>
-                </div>
-
             </div>
 
         </div>

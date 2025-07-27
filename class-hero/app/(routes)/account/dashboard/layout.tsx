@@ -2,10 +2,10 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import WorksheetSkeleton from "@/components/ui/worksheetSkeleton"
 import { useState } from "react";
 
-export default function RootLayout({
+export default function DashboardLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
@@ -17,7 +17,7 @@ export default function RootLayout({
             <SidebarProvider open={openSidebar} onOpenChange={setopenSidebar}>
                 <AppSidebar />
                 <SidebarTrigger />
-                <Suspense fallback={<Skeleton className="h-[20px] w-full rounded-full" />}>
+                <Suspense fallback={<WorksheetSkeleton />}>
                     {children}
                 </Suspense>
             </SidebarProvider>

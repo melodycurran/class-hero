@@ -7,7 +7,7 @@ import WorksheetType from "@/app/(routes)/worksheet-generator/worksheet-types"
 import { Suspense } from "react"
 import { ralewayDots } from "../../../components/ui/fonts"
 import { Preview } from "./preview"
-import { Skeleton } from "@/components/ui/skeleton"
+import WorksheetSkeleton from "@/components/ui/worksheetSkeleton"
 
 
 export default function WorksheetGenerator() {
@@ -36,7 +36,7 @@ export default function WorksheetGenerator() {
 
     return (
         <div>
-            <Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
+            <Suspense fallback={<WorksheetSkeleton/>}>
                 <Categories />
             </Suspense>
             {subject === 'reading' && type === 'word-tracer' ? (
@@ -58,7 +58,7 @@ export default function WorksheetGenerator() {
                     </>
                 ) :
                 (
-                    <Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}><WorksheetType type={subject ?? ""} /></Suspense>
+                        <Suspense fallback={<WorksheetSkeleton />}><WorksheetType type={subject ?? ""} /></Suspense>
                 )
 
             }

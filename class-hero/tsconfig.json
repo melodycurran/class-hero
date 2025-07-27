@@ -36,9 +36,9 @@
     "lib/parallax.ts",
     "components/ui/button1.tsx",
     "components/ui/navigation.tsx",
-    "components/ui/header.jsx",
+    "components/ui/header.tsx",
     "components/ui/fonts.ts",
-    "components/ui/footer.jsx",
+    "components/ui/footer.tsx",
     "app/layout.tsx",
     "app/(routes)/worksheet-generator/page.tsx",
     "lib/database.ts"
