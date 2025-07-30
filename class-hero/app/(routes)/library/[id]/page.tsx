@@ -1,4 +1,4 @@
-import { processIndividualWorksheet } from "@/lib/data"
+import { processIndividualWorksheet } from "@/lib/query"
 import Image from "next/image"
 import AddToCart from "@/components/ui/addToCartBtn"
 
@@ -14,8 +14,9 @@ export default async function IndividualLibraryWorksheet(props: { params: Promis
                     <section className="w-1/2 individualSection flex flex-col items-center">
                         <h3 className="font-bold text-lg">{worksheetData.title}</h3>
                         <Image src={worksheetData.image} alt={worksheetData.alt} width={200} height={300} />
+                        <p className="pt-3">{Number(worksheetData.price) === 0 ? 'FREE' : `$${Number(worksheetData.price).toFixed(2)}`}</p>
                         <p className="leading-9">{worksheetData.short_desc}</p>
-                        <AddToCart title={worksheetData.title} price={worksheetData.price} />
+                        <AddToCart title={worksheetData.title} price={Number(worksheetData.price)} />
                     </section>
                     <h4 className="font-bold leading-8">Description</h4>
                     <p className="text-xs leading-5">{worksheetData.long_desc}</p>

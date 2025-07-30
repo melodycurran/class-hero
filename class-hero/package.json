@@ -9,18 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tailwindcss/postcss": "^4.1.11",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "html2pdf.js": "^0.10.3",
     "lucide-react": "^0.525.0",
     "mongodb": "^6.17.0",
+    "mongoose": "^8.16.5",
     "next": "15.3.5",
+    "next-auth": "5.0.0-beta.29",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "react": "^19.0.0",
@@ -29,9 +33,11 @@
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11",
-    "use-debounce": "^10.0.5"
+    "use-debounce": "^10.0.5",
+    "zod": "^4.0.10"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

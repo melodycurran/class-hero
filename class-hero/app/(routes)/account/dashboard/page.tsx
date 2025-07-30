@@ -1,4 +1,3 @@
-'use client'
 import {
     Sidebar,
     SidebarContent,
@@ -13,34 +12,13 @@ import {
 import { SidebarOptions } from "@/app/services/SidebarOptions"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
 
+import { signOut } from "@/auth"
 
 export default function Dashboard() {
-    const router = useRouter()
 
-    async function handleLogout() {
-        try {
-            const response = await fetch("/api/logout", {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                }
-            })
 
-            if (!response.ok) {
-                const error = await response.json()
-                toast(error.message)
-                throw new Error(error.message || 'Logout unsuccessful')
-            } else {
-                toast('Logout Successful')
-                router.push('/account')
-            }
 
-        } catch (error) {
-            console.error(error)
-        }
-    }
     return (
         <div>
             <Sidebar className="dashboardSidebar">
@@ -64,7 +42,12 @@ export default function Dashboard() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
-                    <Button onClick={handleLogout}>Log out</Button>
+                    <form action={async () => {
+                        'use server'
+                        await signOut({ redirectTo: '/account' })
+                    }}>
+                        <Button className="w-full">Log out</Button>
+                    </form>
                 </SidebarFooter>
             </Sidebar>
             <div className="dashboardSummaryContainer">
@@ -74,7 +57,6 @@ export default function Dashboard() {
                     <h3>Transaction Summary</h3>
                 </div>
             </div>
-
         </div>
     )
 }

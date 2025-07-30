@@ -14,7 +14,7 @@ export default function CartPopOver() {
             setdataTitle(title)
             setdataPrice(Number(price))
         }
-    }, [])
+    }, [dataPrice])
 
     return (
         <section className="text-[10px] flex justify-between cartSection leading-6">

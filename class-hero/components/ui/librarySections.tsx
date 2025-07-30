@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { processSearchQuery } from "@/lib/data"
+import { processSearchQuery } from "@/lib/query"
 import AddToCart from "@/components/ui/addToCartBtn"
 
 export default async function LibrarySection({ term }: { term: string }) {
@@ -14,10 +14,10 @@ export default async function LibrarySection({ term }: { term: string }) {
                         <div className=" text-xs font-sans flex flex-col justify-between">
                             {data.image && <Image src={data.image} alt={data.alt} width={150} height={300} className="h-30 object-cover" />}
                             <h3 className="leading-7">{data.title}</h3>
-                            <p className="leading-7">{data.price === 0 ? 'FREE' : `$${data.price.toFixed(2)}`}</p>
+                            <p className="leading-7">{Number(data.price) === 0 ? 'FREE' : `$${Number(data.price).toFixed(2)}`}</p>
                         </div>
                     </Link>
-                    <AddToCart _id={data._id.toString()} title={data.title} price={data.price} />
+                    <AddToCart title={data.title} price={Number(data.price)} />
                 </div>
             ))}
         </div>

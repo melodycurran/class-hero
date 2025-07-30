@@ -1,38 +1,43 @@
-import { Db, MongoClient } from 'mongodb';
+import mongoose from 'mongoose'
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0.5zlwlvq.mongodb.net/class_hero?retryWrites=true&w=majority&appName=Cluster0`;
 
-declare global {
-    var _mongoClientPromise: Promise<MongoClient>
+interface MongooseCache {
+    conn: typeof mongoose | null
+    promise: Promise<typeof mongoose> | null
 }
 
-let cachedClient: MongoClient | null = null
-let clientPromise: Promise<MongoClient>
-let cachedDb: Db | null = null
+declare global {
+    var mongooseGlobal: MongooseCache
+}
 
-if (process.env.NODE_ENV === 'development') {
-    if (!global._mongoClientPromise) {
-        cachedClient = new MongoClient(uri, {
+const globalMongoose: MongooseCache = globalThis.mongooseGlobal || (globalThis.mongooseGlobal = { conn: null, promise: null })
+
+export default async function connectDB(): Promise<typeof mongoose> {
+    if (globalMongoose.conn) {
+        console.log('Initializing Mongoose connection');
+        return globalMongoose.conn;
+    }
+
+    if (!globalMongoose.promise) {
+        const opts = {
+            bufferCommands: false,
+            dbName: 'class_hero',
             maxPoolSize: 10,
             minPoolSize: 0,
-        })
-        global._mongoClientPromise = cachedClient.connect()
+        };
+        globalMongoose.promise = mongoose.connect(uri, opts);
+        console.log('Establishing new Mongoose connection...');
     }
-    clientPromise = global._mongoClientPromise
-} else {
-    cachedClient = new MongoClient(uri, {
-        maxPoolSize: 10,
-        minPoolSize: 0,
-    })
-    clientPromise = cachedClient.connect()
+
+    try {
+        globalMongoose.conn = await globalMongoose.promise;
+        console.log('Mongoose connected successfully.');
+        return globalMongoose.conn;
+    } catch (error) {
+        console.error('Mongoose connection failed:', error);
+        globalMongoose.promise = null;
+        globalMongoose.conn = null;
+        throw error;
+    }
 }
-
-export async function connectDB() {
-
-    const client = await clientPromise;
-    cachedDb = client.db("class_hero")
-
-    return { client, db: client.db("class_hero") }
-
-}
-
