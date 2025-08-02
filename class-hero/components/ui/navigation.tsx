@@ -11,8 +11,6 @@ export default function Navigation() {
     const path = usePathname()
     const [clicked, setClicked] = useState(false)
 
-    console.log(clicked)
-
     return (
         <nav className='w-3/5 justify-items-end'>
             <ul className='w-full flex gap-1'>

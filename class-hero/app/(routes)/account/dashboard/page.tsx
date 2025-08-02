@@ -1,3 +1,4 @@
+'use client'
 import {
     Sidebar,
     SidebarContent,
@@ -12,12 +13,13 @@ import {
 import { SidebarOptions } from "@/app/services/SidebarOptions"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-
-import { signOut } from "@/auth"
+import { useSession } from "next-auth/react"
+import { signOutUser } from "@/lib/actions"
 
 export default function Dashboard() {
-
-
+    const { data: session, status } = useSession()
+    console.log('SEssion', session)
+    console.log('Status', status)
 
     return (
         <div>
@@ -42,17 +44,14 @@ export default function Dashboard() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
-                    <form action={async () => {
-                        'use server'
-                        await signOut({ redirectTo: '/account' })
-                    }}>
+                    <form action={signOutUser}>
                         <Button className="w-full">Log out</Button>
                     </form>
                 </SidebarFooter>
             </Sidebar>
             <div className="dashboardSummaryContainer">
-                <h2> Hi, User</h2>
-                <section><p>Membership: </p></section>
+                <h2> Hi, {session?.user?.fname}</h2>
+                <section><p>Membership: {`${session?.user?.account_type?.charAt(0).toUpperCase()}${session?.user?.account_type?.slice(1)}`}</p></section>
                 <div>
                     <h3>Transaction Summary</h3>
                 </div>

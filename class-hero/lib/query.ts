@@ -1,8 +1,9 @@
 import connectDB from "@/lib/database"
 import Worksheet from "@/app/models/Worksheet"
+import UserData from "@/app/models/UserData"
 
+await connectDB()
 export async function processSearchQuery(term: string) {
-    await connectDB()
 
     try {
         let query: any = {}
@@ -16,7 +17,6 @@ export async function processSearchQuery(term: string) {
 }
 
 export async function processIndividualWorksheet(id: string) {
-    await connectDB()
     try {
         const data = await Worksheet.findById(id).exec()
         return data
@@ -26,9 +26,21 @@ export async function processIndividualWorksheet(id: string) {
 }
 
 export async function insertWorksheetFromEditor() {
-    await connectDB()
+    return
 }
 
-export async function saveNewUserData() {
-    return
+export async function saveNewUserData(data: object | undefined) {
+    try {
+        const response = await UserData.insertMany(data)
+        if (response) {
+            return {
+                success: true
+            }
+        }
+    } catch (error:any) {
+        return {
+            message: error.message,
+            errors: {error}
+        }
+    }
 }

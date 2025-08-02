@@ -6,6 +6,8 @@ import Footer from "../components/ui/footer"
 import { Suspense } from "react";
 import WorksheetSkeleton from "@/components/ui/worksheetSkeleton"
 import { Toaster } from "@/components/ui/sonner"
+import Providers from "./providers";
+
 
 export const metadata: Metadata = {
   title: "Class Hero",
@@ -25,7 +27,9 @@ export default function RootLayout({
           <Header />
           <main>
             <Suspense fallback={<WorksheetSkeleton />}>
-              {children}
+              <Providers>
+                {children}
+              </Providers>
               <Toaster />
             </Suspense>
           </main>

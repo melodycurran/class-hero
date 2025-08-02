@@ -22,9 +22,7 @@ export default function LoginForm() {
 
     useEffect(() => {
         if (errorMessage) {
-            toast('You logged in successfully')
-        } else {
-            console.log(formAction)
+            toast(errorMessage)
         }
     }, [errorMessage])
 
@@ -49,9 +47,8 @@ export default function LoginForm() {
                 </span>
 
                 <input type="hidden" name="redirectTo" value={callbackUrl} />
-                <Button aria-disabled={isPending} className="w-full h-[25px] text-[10px] loginbtn">Log in</Button>
+                <Button aria-disabled={isPending} disabled={isPending} className="w-full h-[25px] text-[10px] loginbtn">Log in</Button>
             </form>
-
         </>
     )
 }
