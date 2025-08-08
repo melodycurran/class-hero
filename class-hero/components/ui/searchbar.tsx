@@ -21,9 +21,9 @@ export default function SearchBar() {
 
 
     return (
-        <div className="w-5/6 flex searchContainer">
-            <input placeholder="Type here to search library..." type="text" name="query" className="w-full bg-white rounded-(--radius) relative searchInput font-sans text-[10px] leading-6" onChange={(e) => handleSearch(e.target.value)} />
-            <Search className="absolute searchIcon" />
+        <div className="w-1/2 flex justify-center my-[2rem] mx-auto relative">
+            <input placeholder="Type here to search library..." type="text" name="query" className="w-full bg-(--ring) rounded-(--radius) pl-[1.5rem] font-sans text-[10px] leading-6 focus:bg-white" onChange={(e) => handleSearch(e.target.value)} />
+            <Search className="absolute left-0 p-[3px]" />
         </div>
 
     )

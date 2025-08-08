@@ -19,9 +19,9 @@ export default function Navigation() {
                 ))}
                 <li onClick={() => setClicked((prevState) => !prevState)} className='relative'>
 
-                    <ShoppingCartIcon className={`hover:bg-gray-300 shoppingCartIcon ${path === '/cart' && 'bg-gray-300'}`} />
+                    <ShoppingCartIcon className={`hover:bg-gray-300 p-1 m-[2px] ${path === '/cart' && 'bg-gray-300'}`} />
                     {clicked &&
-                        <div className='absolute bg-(--ring) w-[200px] h-[300px] right-0 cartPopOver z-1 rounded-(--radius) font-sans text-xs '>
+                        <div className='absolute bg-(--ring) w-[200px] h-[300px] right-0 p-3 z-1 rounded-(--radius) font-sans text-xs '>
                             <h4 className='font-bold'>Cart Items</h4>
                             <CartPopOver />
                             <Button>Checkout</Button>

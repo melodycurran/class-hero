@@ -1,15 +1,14 @@
-import next from 'next'
 import type { NextAuthConfig } from 'next-auth'
 
 export const authConfig = {
 
     pages: {
-        signIn: '/account',
+        signIn: '/login',
     },
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user
-            const isOnDashboard = nextUrl.pathname.startsWith('/account/dashboard')
+            const isOnDashboard = nextUrl.pathname.startsWith('/account')
             const isOnEditor = nextUrl.pathname.startsWith('/worksheet-editor')
 
             if (isOnDashboard) {
@@ -23,6 +22,7 @@ export const authConfig = {
         },
         async jwt({ token, user }) {
             if (user) {
+                token._id = user._id.toString()
                 token.fname = user.fname
                 token.lname = user.lname
                 token.email = user.email
@@ -35,6 +35,7 @@ export const authConfig = {
         },
         async session({ session, token }) {
             if (token) {
+                session.user._id = token._id
                 session.user.fname = token.fname
                 session.user.lname = token.lname
                 session.user.ph = token.ph

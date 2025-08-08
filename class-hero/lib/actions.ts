@@ -1,12 +1,17 @@
 'use server'
 import { signIn, signOut } from '@/auth'
 import { AuthError } from 'next-auth'
-import { saveNewUserData } from '@/lib/query'
+import { getProjectData, saveNewUserData } from '@/lib/query'
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
 import { redirect } from 'next/navigation'
 import { FormState } from './definitions'
 import { isValidPhoneNumber, parsePhoneNumberWithError } from 'libphonenumber-js'
+import { insertWorksheetFromEditor } from '@/lib/query'
+import { nanoid } from 'nanoid'
+import { getDifferentKeys } from './utils'
+import { compareObjects } from './utils'
+import { updateProjectFields } from '@/lib/query'
 
 
 export async function authenticate(prevState: string | undefined, formData: FormData) {
@@ -34,7 +39,7 @@ export async function googleSignIn() {
 }
 
 export async function signOutUser() {
-    await signOut({ redirectTo: '/account' })
+    await signOut({ redirectTo: '/login' })
 }
 
 export async function registerUser(prevState: FormState | undefined, formData: FormData): Promise<FormState | undefined> {
@@ -106,7 +111,7 @@ export async function registerUser(prevState: FormState | undefined, formData: F
 
         const response = await saveNewUserData(newData)
         if (response?.success) {
-            redirect('/account?registered=true')
+            redirect('/login?registered=true')
         }
 
     } catch (error: any) {
@@ -119,5 +124,79 @@ export async function registerUser(prevState: FormState | undefined, formData: F
             errors: error.message,
             success: false
         }
+    }
+}
+
+export async function saveDesignData(prevState: any | undefined, formData: FormData) {
+    try {
+        const projectId = nanoid()
+        const rawDesignData = {
+            projectName: formData.get('projectName'),
+            width: formData.get('width'),
+            height: formData.get('height'),
+            userId: formData.get('userId'),
+        }
+
+        console.log('data', rawDesignData)
+
+        const response = await insertWorksheetFromEditor(projectId, rawDesignData)
+
+        console.log('Response', response) //Needs to be deleted
+        if (response?.success) {
+            redirect(`/worksheet-editor/${projectId}`)
+        }
+
+    } catch (error: any) {
+        if (error.message === 'NEXT_REDIRECT') {
+            throw error
+        }
+        return {
+            message: 'Sorry, an unexpected error occured',
+            errors: error.message,
+            success: false
+        }
+    }
+}
+
+export async function updateFields(prevState: any | undefined, formData: FormData) {
+    try {
+        const updatedData = {
+            userId: formData.get('userId'),
+            projectId: formData.get('projectId'),
+            projectName: formData.get('projectName'),
+            width: formData.get('width'),
+            height: formData.get('height'),
+        }
+
+        const projectId = updatedData?.projectId
+        let projectData
+
+        if (typeof projectId !== 'string') return
+
+        projectData = await getProjectData(projectId)
+
+        if (!projectData || 'message' in projectData) throw new Error
+
+        const projectDataObj = projectData.toObject()
+
+        const isEqual = compareObjects(updatedData, projectDataObj)
+
+        if (isEqual) return
+
+        const keys = getDifferentKeys(projectDataObj, updatedData)
+
+        const updateKeys: any = {}
+
+        keys.forEach(key => {
+            updateKeys[key] = updatedData[key]
+        })
+
+        const response = await updateProjectFields(projectId, updateKeys)
+
+        const responseJson = JSON.stringify(response)
+        return responseJson
+    } catch (error) {
+        console.error('Error', error)
+        return error
     }
 }

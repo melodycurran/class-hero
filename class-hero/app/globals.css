@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+#canvasSize:hover {
+    background-color: blue;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -21,13 +25,10 @@ a {
     border-radius: var(--radius);
 }
 
+
+
 .text-type {
     padding-left: 10px;
-}
-
-#readingTextArea,
-button {
-    padding: 10px;
 }
 
 .textInput {
@@ -42,89 +43,13 @@ button {
     padding: 10px
 }
 
-.texinputBtn {
-    margin-top: 2rem;
-}
-
-.generatorContainer {
-    padding-top: 3rem;
-}
-
-.loginFormContainer {
-    margin: 4rem auto;
-    padding: 2rem;
-}
-
-.loginInput {
-    padding: 10px;
-    padding-right: 2rem;
-    position: relative;
-}
-
-.loginbtn {
-    margin-top: 1rem;
-}
-
-.dashboardSidebar {
-    padding: 2rem;
-}
-
-.worksheet-editor-menu-div {
-    width: 80%;
-    padding: .70rem 0;
-}
-
-/* .canvasSize {
-    margin-top: 1rem;
-} */
-
-.recentWorksheetBtn {
-    margin-top: 2rem;
-    padding: .5rem;
-}
-
-.libraryWorksheets {
-    margin-top: 2rem;
-}
-
-.libraryItems {
-    padding: 1rem;
-}
-
-.searchContainer {
-    margin: 2rem auto;
-}
-
-.searchInput {
-    padding-left: 1.5rem;
-}
-
-.searchIcon {
-    padding: 3px;
-}
-
-.shoppingCartIcon {
-    padding: 5px;
-    margin: 2px;
-}
-
-.individualWorksheetContainer,
-.individualSection {
-    margin: 2rem auto;
-}
-
 .individualWorksheetContainer div {
     padding: 0 1.5rem;
     padding-bottom: 2rem;
 }
 
-.cartPopOver {
-    padding: .75rem;
-}
-
-.cartSection {
-    border-bottom: solid var(--french-gray) 1px;
-    margin: 6px;
+.sketch-picker {
+    box-shadow: none !important;
 }
 
 :root {
@@ -162,7 +87,6 @@ button {
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    --worksheetsidebarwidth: 10%;
 }
 
 html,
@@ -175,7 +99,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 
 
 li {

@@ -39,10 +39,11 @@
     "components/ui/header.tsx",
     "components/ui/fonts.ts",
     "components/ui/footer.tsx",
-    "app/layout.tsx",
-    "app/(routes)/worksheet-generator/page.tsx",
-    "lib/database.ts"
-  ],
+    "app/(public)/layout.tsx",
+    "app/(public)/worksheet-generator/page.tsx",
+    "lib/database.ts",
+    "context/worksheetEditorContext.jsx"
+, "context/designContext.jsx"  ],
   "exclude": [
     "node_modules"
   ]

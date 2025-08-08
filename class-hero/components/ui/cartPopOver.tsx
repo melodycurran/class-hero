@@ -17,7 +17,7 @@ export default function CartPopOver() {
     }, [dataPrice])
 
     return (
-        <section className="text-[10px] flex justify-between cartSection leading-6">
+        <section className="text-[10px] flex justify-between border-b border-(--french-gray) leading-6 m-(6px)">
             <p>{dataTitle}</p>
             <p>{`$${dataPrice.toFixed(2)}`}</p>
         </section>

@@ -1,22 +1,19 @@
 import {
-    HomeIcon, ComponentIcon, LayoutTemplateIcon, Plus, CircleUserIcon, File, SquareArrowUpRightIcon
+    HomeIcon, ComponentIcon, LayoutTemplateIcon, Plus, CircleUserIcon, File, SquareArrowUpRightIcon, ALargeSmallIcon, Component, Sparkles, ImageIcon, Settings, ShellIcon
 } from "lucide-react"
+import BackgroundSettings from "./Components/BackgroundSettings"
+// import ImageUploadSettings from "./Components/ImageUploadSettings"
 
 export const WorksheetEditorMenu = [
-    {
-        name: 'Create',
-        path: '/worksheet-editor/create',
-        icon: Plus,
-    },
-    {
-        name: 'Account',
-        path: '/account/dashboard',
-        icon: CircleUserIcon,
-    },
     {
         name: 'Home',
         path: '/worksheet-editor',
         icon: HomeIcon,
+    },
+    {
+        name: 'Account',
+        path: '/account',
+        icon: CircleUserIcon,
     },
     {
         name: 'Projects',
@@ -29,7 +26,6 @@ export const WorksheetEditorMenu = [
         icon: LayoutTemplateIcon,
     },
 ]
-
 
 export const WorksheetCanvasSize = [
     {
@@ -57,5 +53,45 @@ export const WorksheetCanvasSize = [
         width: 0,
         height: 0,
         icon: SquareArrowUpRightIcon
+    },
+]
+
+export const WorksheetProjectMenu = [
+    {
+        name: "Template",
+        desc: "View Templates",
+        icon: LayoutTemplateIcon
+    },
+    {
+        name: "Text",
+        desc: "Select texts",
+        icon: ALargeSmallIcon
+    },
+    {
+        name: "Background",
+        desc: "Pick background color",
+        icon: ShellIcon,
+        component: <BackgroundSettings />
+    },
+    {
+        name: "Elements",
+        desc: "Choose elements",
+        icon: Component
+    },
+    {
+        name: "AI",
+        desc: "Use AI",
+        icon: Sparkles
+    },
+    {
+        name: "Images",
+        desc: "Add images or Upload",
+        icon: ImageIcon,
+        // component: <ImageUploadSettings />
+    },
+    {
+        name: "Settings",
+        desc: "Change design settings",
+        icon: Settings
     },
 ]

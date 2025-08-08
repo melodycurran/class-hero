@@ -4,7 +4,7 @@ import { DefaultJWT } from 'next-auth/jwt'
 declare module 'next-auth' {
     interface Session {
         user?: {
-            id?: string,
+            _id: string,
             email?: string,
             fname?: string,
             lname?: string,
@@ -15,6 +15,7 @@ declare module 'next-auth' {
         } & DefaultSession['user']
     }
     interface User extends DefaultUser {
+        _id: string,
         email?: string,
         lname?: string,
         fname?: string,
@@ -27,6 +28,7 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
     interface JWT extends DefaultJWT {
+        _id: string,
         email?: string,
         lname?: string,
         fname?: string,

@@ -7,16 +7,8 @@ import z from 'zod'
 import connectDB from "./lib/database";
 import UserData from "./app/models/UserData";
 import bcrypt from 'bcryptjs'
+import { User } from "@/lib/definitions"
 
-type User = {
-    fname: string,
-    lname: string,
-    email: string,
-    ph: string,
-    pw: string,
-    type: string,
-    account_type: string
-}
 
 await connectDB()
 

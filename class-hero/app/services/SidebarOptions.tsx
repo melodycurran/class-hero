@@ -3,7 +3,7 @@ import { CircleUserIcon, PencilRulerIcon, Settings2Icon, BadgeCheckIcon, DollarS
 export const SidebarOptions = [
     {
         title: "Dashboard",
-        url: "/account/dashboard",
+        url: "/account",
         icon: CircleUserIcon
     },
 

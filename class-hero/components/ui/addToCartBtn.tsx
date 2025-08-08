@@ -1,11 +1,8 @@
 'use client'
 import { Button } from "./button"
+import { DataProps } from "@/lib/definitions"
 
-interface DataProps {
-    title: string,
-    price: number,
-}
-export default function AddToCart({title, price }: DataProps) {
+export default function AddToCart({ title, price, className }: DataProps) {
     const data =
     {
         title: title,
@@ -17,6 +14,6 @@ export default function AddToCart({title, price }: DataProps) {
             () => {
                 window.localStorage.setItem("cart-items", JSON.stringify(data))
             }
-        } className="text-xs w-full" >Add to Cart</Button>
+        } className={className}>Add to Cart</Button>
     )
 }

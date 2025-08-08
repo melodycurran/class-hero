@@ -18,7 +18,7 @@ export const NavMenu: Nav[] = [
     },
     {
         name: "Account",
-        path: "/account"
+        path: "/login"
     },
 ]
 
