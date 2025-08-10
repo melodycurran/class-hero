@@ -1,14 +1,22 @@
 'use client'
-import CanvasContext from "@/context/worksheetEditorContext"
+import DesignContext from "@/context/designContext"
 import { ProviderDivProps } from "@/lib/definitions"
+import { useState, useContext } from "react"
 
-export default function ProviderDiv({ children, className, value }: ProviderDivProps) {
+export default function ProviderDiv({ children, className }: ProviderDivProps) {
+    const [canvasInit, setcanvasInstance] = useState()
 
     return (
-        <CanvasContext.Provider value={value}>
+        <DesignContext.Provider value={{ canvasInit, setcanvasInstance }}>
             <div className={className}>
                 {children}
             </div>
-        </CanvasContext.Provider>
+        </DesignContext.Provider>
     )
+}
+
+export function useCanvasInstance() {
+    const context = useContext(DesignContext)
+    if (!context) return
+    return context
 }

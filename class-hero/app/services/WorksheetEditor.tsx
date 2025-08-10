@@ -2,7 +2,8 @@ import {
     HomeIcon, ComponentIcon, LayoutTemplateIcon, Plus, CircleUserIcon, File, SquareArrowUpRightIcon, ALargeSmallIcon, Component, Sparkles, ImageIcon, Settings, ShellIcon
 } from "lucide-react"
 import BackgroundSettings from "./Components/BackgroundSettings"
-// import ImageUploadSettings from "./Components/ImageUploadSettings"
+import ImageUploadSettings from "./Components/ImageUploadSettings"
+import ShapesSetting from "./Components/ShapesSettings"
 
 export const WorksheetEditorMenu = [
     {
@@ -69,14 +70,15 @@ export const WorksheetProjectMenu = [
     },
     {
         name: "Background",
-        desc: "Pick background color",
+        desc: "Pick canvas background color",
         icon: ShellIcon,
         component: <BackgroundSettings />
     },
     {
         name: "Elements",
-        desc: "Choose elements",
-        icon: Component
+        desc: "Select shapes and elements",
+        icon: Component,
+        component: <ShapesSetting />
     },
     {
         name: "AI",
@@ -87,7 +89,7 @@ export const WorksheetProjectMenu = [
         name: "Images",
         desc: "Add images or Upload",
         icon: ImageIcon,
-        // component: <ImageUploadSettings />
+        component: <ImageUploadSettings />
     },
     {
         name: "Settings",

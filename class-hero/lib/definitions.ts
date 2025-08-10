@@ -1,4 +1,5 @@
-import React from "react";
+import { LucideProps } from "lucide-react";
+import React, { ForwardRefExoticComponent, RefAttributes } from "react";
 
 
 
@@ -106,5 +107,21 @@ export interface ColorPickerProps {
 export interface ProviderDivProps {
     children: React.ReactNode,
     className: string,
-    value: object
+}
+
+export interface UnsplashListType {
+    urls: {
+        full: string,
+        raw: string,
+        regular: string,
+        small: string,
+        small_s3: string,
+        thumb: string
+    },
+    alt_description: string
+}
+
+export interface ShapesTypes {
+    name: string,
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
 }

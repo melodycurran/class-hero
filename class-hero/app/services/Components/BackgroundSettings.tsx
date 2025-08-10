@@ -1,19 +1,23 @@
 'use client'
 import ColorPicker from "../Shareable/ColorPicker"
-import { useContext, useState } from "react"
-import CanvasContext from "@/context/worksheetEditorContext"
+import { useState } from "react"
+import { useCanvasInstance } from "@/components/ui/providerDiv"
 
 
 export default function BackgroundSettings() {
     const [bgColor, setBgColor] = useState('')
+    const { canvasInit } = useCanvasInstance()
 
     function onColorChange(color: string) {
         setBgColor(color)
+        canvasInit?.set({
+            backgroundColor: color,
+            backgroundImage: null
+        })
+        canvasInit.renderAll()
     }
-    console.log(bgColor)
 
     return (
-
         <ColorPicker value={bgColor}
             onColorChange={(v) => onColorChange(v)}
         />

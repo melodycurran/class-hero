@@ -1,5 +1,5 @@
 'use client'
-import { CloudCheck } from "lucide-react"
+import { CheckCheck } from "lucide-react"
 import { useActionState, useState, useEffect, useRef } from "react"
 import { ProjectDataType } from '@/lib/definitions'
 import { ProjectDataProps } from "@/lib/definitions"
@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react"
 import { useDebounce } from "use-debounce"
 import { updateFields } from "@/lib/actions"
 import CanvasContext from "@/context/worksheetEditorContext"
+import Loading from "./loading"
 
 
 
@@ -43,7 +44,7 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
 
 
     if (status === 'loading') {
-        return <div>...Loading</div>
+        return <Loading />
     }
 
     return (
@@ -60,7 +61,7 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
                         projectName: e.target.value || ''
                     })} />
 
-                    <div className="absolute top-0 right-0">
+                    <div className="absolute top-0 right-0 mr-3">
 
                         <input type="number" min="0" name="width" value={data?.width || ''} placeholder="width" className="border-b border-(--ring) w-[4rem] text-xs leading-5 mr-1 px-1 text-center" onChange={(e) => setData({
                             ...data,
@@ -70,16 +71,14 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
                         <input type="number" min="0" name="height" value={data?.height || ''} placeholder="height" className="border-b border-(--ring) w-[4rem] text-xs leading-5 ml-1 px-1 text-center" onChange={(e) => setData({
                             ...data,
                             height: e.target.value || ''
-                        })} />
+                        })} />px
                     </div>
                 </div>
 
-                <div className="text-xs w-[30%] h-[2rem] flex gap-1 items-center absolute top-0">{isPending ? <p className="animation-pulse">Saving...</p> : <><p>Saved</p><CloudCheck className="w-4" /></>}</div>
+                <div className="text-xs w-[30%] h-[2rem] flex gap-1 items-center absolute top-0">{isPending ? <p className="animation-pulse">Saving...</p> : <><p>Saved</p><CheckCheck className="w-3" /></>}</div>
             </form>
             <CanvasContext.Provider value={data}>
-                <>
-                    {children}
-                </>
+                {children}
             </CanvasContext.Provider>
         </>
     )

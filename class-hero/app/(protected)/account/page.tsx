@@ -14,11 +14,12 @@ import { SidebarOptions } from "@/app/services/SidebarOptions"
 import { Button } from "@/components/ui/button"
 import { useSession } from "next-auth/react"
 import { signOutUser } from "@/lib/actions"
+import Loading from "@/components/ui/loading"
 
 export default function Dashboard() {
     const { data: session, status } = useSession()
 
-    if (status === 'loading') return <div>Loading...</div>
+    if (status === 'loading') return <Loading />
 
     return (
         <div>
