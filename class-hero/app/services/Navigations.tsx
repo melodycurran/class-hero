@@ -1,7 +1,4 @@
-interface Nav {
-    name: string
-    path: string
-}
+import { Nav } from "@/lib/definitions"
 
 export const NavMenu: Nav[] = [
     {

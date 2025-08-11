@@ -3,13 +3,14 @@ import React, { useRef, useEffect, useState, useContext } from "react"
 import * as fabric from 'fabric'
 import CanvasContext from "@/context/worksheetEditorContext"
 import { useCanvasInstance } from "./providerDiv"
+import ShapeSettingsNav from "@/app/services/Components/ShapeSettingsNav"
+import { CanvasObject } from "@/lib/definitions"
 
 export default function WorksheetCanvas() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const canvasContext = useContext(CanvasContext)
     const { canvasInit, setcanvasInstance } = useCanvasInstance()
-    console.log('Context', canvasInit?.backgroundColor)
-
+    const [displayShapeShettings, setDisplayShapeShettings] = useState(false)
 
     useEffect(() => {
 
@@ -56,11 +57,11 @@ export default function WorksheetCanvas() {
 
 
     useEffect(() => {
-        function handleDelete(event: KeyboardEvent) {
 
-            if (event.key === 'Delete') {
+        function handleDelete(event: KeyboardEvent) {
+            if (event?.key === 'Delete' || event?.key === 'Backspace') {
                 if (canvasInit) {
-                    const active = canvasInit.getActiveObject()
+                    const active = canvasInit?.getActiveObject()
                     if (active) {
                         canvasInit.remove(active)
                         canvasInit.renderAll()
@@ -73,10 +74,30 @@ export default function WorksheetCanvas() {
         return () => document.removeEventListener('keydown', handleDelete)
     }, [canvasInit])
 
+
+    if (canvasInit) {
+        canvasInit.on('selection:created', function (event: fabric.TEventsExtraData) {
+            const selectedArray: CanvasObject = event?.selected[0]
+            // canvasInit?.getActiveObject()
+            if (selectedArray?.cornerStyle == 'rect') {
+                setDisplayShapeShettings(true)
+            }
+
+        })
+
+        canvasInit.on('selection:cleared', function () {
+            setDisplayShapeShettings(false)
+        })
+    }
+
+
     return (
-        <div className="w-full h-full mt-4 ml-3 flex justify-center drop-shadow-lg">
-            <canvas id="canvas" ref={canvasRef} />
+        <div className="relative">
+            {displayShapeShettings && <ShapeSettingsNav />}
+            <div className="w-full h-full mt-6 ml-3 flex justify-center drop-shadow-lg">
+                <canvas id="canvas" ref={canvasRef} />
+            </div>
         </div>
+
     )
 }
-

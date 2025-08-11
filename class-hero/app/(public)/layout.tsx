@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full h-screen grid gap-2 grid-rows-[10%_1fr_10px] justify-self-center">
+    <div className="w-full h-screen grid gap-2 grid-rows-[10%_1fr_10px] justify-self-center px-6">
       <Header />
       <Suspense fallback={<WorksheetSkeleton />}>
         {children}

@@ -1,7 +1,10 @@
 import { LucideProps } from "lucide-react";
 import React, { ForwardRefExoticComponent, RefAttributes } from "react";
 
-
+export interface Nav {
+    name: string
+    path: string
+}
 
 export type User = {
     fname: string,
@@ -124,4 +127,8 @@ export interface UnsplashListType {
 export interface ShapesTypes {
     name: string,
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+}
+
+export interface CanvasObject {
+    cornerStyle: string
 }
