@@ -1,9 +1,12 @@
 import {
-    HomeIcon, ComponentIcon, LayoutTemplateIcon, Plus, CircleUserIcon, File, SquareArrowUpRightIcon, ALargeSmallIcon, Component, Sparkles, ImageIcon, Settings, ShellIcon
+    HomeIcon, ComponentIcon, LayoutTemplateIcon, Plus, CircleUserIcon, File, SquareArrowUpRightIcon, ALargeSmallIcon, Component, Sparkles, ImageIcon, ImageUp, ShellIcon
 } from "lucide-react"
 import BackgroundSettings from "./Components/BackgroundSettings"
 import ImageUploadSettings from "./Components/ImageUploadSettings"
 import ShapesSetting from "./Components/ShapesSettings"
+import TextSetting from "./Components/AddText"
+// import ImageKitAI from "./Components/ImageKitAI"
+// import AITransform from "./Shareable/AITransform"
 
 export const WorksheetEditorMenu = [
     {
@@ -65,8 +68,9 @@ export const WorksheetProjectMenu = [
     },
     {
         name: "Text",
-        desc: "Select texts",
-        icon: ALargeSmallIcon
+        desc: "Add text and heading",
+        icon: ALargeSmallIcon,
+        component: <TextSetting />
     },
     {
         name: "Background",
@@ -80,20 +84,23 @@ export const WorksheetProjectMenu = [
         icon: Component,
         component: <ShapesSetting />
     },
-    {
-        name: "AI",
-        desc: "Use AI",
-        icon: Sparkles
-    },
+
     {
         name: "Images",
         desc: "Add images or Upload",
         icon: ImageIcon,
         component: <ImageUploadSettings />
     },
-    {
-        name: "Settings",
-        desc: "Change design settings",
-        icon: Settings
-    },
+    // {
+    //     name: "Uploaded",
+    //     desc: "View Uploaded Images",
+    //     icon: ImageUp,
+    //     component: <ImageKitAI />
+    // },
+    // {
+    //     name: "AI",
+    //     desc: "Use AI to transform images",
+    //     icon: Sparkles,
+    //     component: <AITransform />
+    // },
 ]

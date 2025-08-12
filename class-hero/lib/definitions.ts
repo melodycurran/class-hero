@@ -132,3 +132,12 @@ export interface ShapesTypes {
 export interface CanvasObject {
     cornerStyle: string
 }
+
+export type ImageKitImagesType = {
+    fileId: string,
+    filePath: string,
+    fileType: string,
+    name: string,
+    thumbnail: string,
+    url: string
+}

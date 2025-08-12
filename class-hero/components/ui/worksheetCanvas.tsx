@@ -5,12 +5,14 @@ import CanvasContext from "@/context/worksheetEditorContext"
 import { useCanvasInstance } from "./providerDiv"
 import ShapeSettingsNav from "@/app/services/Components/ShapeSettingsNav"
 import { CanvasObject } from "@/lib/definitions"
+import TextSettingNav from "@/app/services/Components/TextSettingsNav"
 
 export default function WorksheetCanvas() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const canvasContext = useContext(CanvasContext)
     const { canvasInit, setcanvasInstance } = useCanvasInstance()
     const [displayShapeShettings, setDisplayShapeShettings] = useState(false)
+    const [displayTextSettings, setdisplayTextSettings] = useState(false)
 
     useEffect(() => {
 
@@ -59,7 +61,7 @@ export default function WorksheetCanvas() {
     useEffect(() => {
 
         function handleDelete(event: KeyboardEvent) {
-            if (event?.key === 'Delete' || event?.key === 'Backspace') {
+            if (event?.key === 'Delete') {
                 if (canvasInit) {
                     const active = canvasInit?.getActiveObject()
                     if (active) {
@@ -78,15 +80,20 @@ export default function WorksheetCanvas() {
     if (canvasInit) {
         canvasInit.on('selection:created', function (event: fabric.TEventsExtraData) {
             const selectedArray: CanvasObject = event?.selected[0]
-            // canvasInit?.getActiveObject()
-            if (selectedArray?.cornerStyle == 'rect') {
+            const active = canvasInit?.getActiveObject()
+
+            if (!('text' in selectedArray) && selectedArray?.cornerStyle == 'rect') {
                 setDisplayShapeShettings(true)
+            }
+            else if (active.text) {
+                setdisplayTextSettings(true)
             }
 
         })
 
         canvasInit.on('selection:cleared', function () {
             setDisplayShapeShettings(false)
+            setdisplayTextSettings(false)
         })
     }
 
@@ -94,6 +101,7 @@ export default function WorksheetCanvas() {
     return (
         <div className="relative">
             {displayShapeShettings && <ShapeSettingsNav />}
+            {displayTextSettings && <TextSettingNav />}
             <div className="w-full h-full mt-6 ml-3 flex justify-center drop-shadow-lg">
                 <canvas id="canvas" ref={canvasRef} />
             </div>
