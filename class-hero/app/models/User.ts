@@ -1,6 +1,7 @@
 import mongoose, { Schema, Model, Document } from 'mongoose'
 
 interface UserType extends Document {
+    _id: string,
     fname: string,
     lname: string,
     email: string,
@@ -12,6 +13,7 @@ interface UserType extends Document {
 }
 
 const UserSchema: Schema<UserType> = new Schema({
+    _id: String,
     fname: String,
     lname: String,
     email: String,
@@ -24,6 +26,6 @@ const UserSchema: Schema<UserType> = new Schema({
     collection: 'users'
 })
 
-const User: Model<UserType> = mongoose.models.User ? (mongoose.models.User as Model<UserType>) : (mongoose.model<UserType>('User', UserSchema))
+const UserData: Model<UserType> = mongoose.models.UserData ? (mongoose.models.UserData as Model<UserType>) : (mongoose.model<UserType>('UserData', UserSchema))
 
-export default User
+export default UserData
