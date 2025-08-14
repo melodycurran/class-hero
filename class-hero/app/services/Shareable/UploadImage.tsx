@@ -28,13 +28,16 @@ export default function UploadImage() {
             return
         }
 
+        const convertFileToBuffer = await file.arrayBuffer()
+        const buffer = Buffer.from(convertFileToBuffer)
+
         const imageType = file?.type.split("/")[1]
         const fileName = nanoid()
 
         setUploading(true)
         try {
             const imageRef = await imagekit.upload({
-                file: file,
+                file: buffer,
                 fileName: fileName + '.' + imageType,
                 isPublished: true
             })
