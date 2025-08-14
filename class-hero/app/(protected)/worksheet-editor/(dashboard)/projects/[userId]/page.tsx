@@ -10,12 +10,13 @@ import {
 import CanvasSize from "@/components/ui/canvasSize"
 import RecentWorksheet from "@/components/ui/recentWorksheet"
 import { ProjectDataType } from "@/lib/definitions"
+import { PageProps } from "@/lib/definitions"
 
-export default async function Projects(props: { params: { userId: string } }) {
-    const params = props.params
-    const id = params.userId
+export default async function Projects({ params }: PageProps) {
+    const { userId } = params
+    // const id = params.userId
 
-    const projectData = await getAllProjects(id)
+    const projectData = await getAllProjects(userId)
     if (!projectData) return
     const parsed: ProjectDataType[] = JSON.parse(projectData)
 

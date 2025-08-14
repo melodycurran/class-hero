@@ -147,3 +147,8 @@ export interface StickerProps {
     url: string,
 }
 
+export interface PageProps {
+    params: {
+        userId: string
+    }
+}
