@@ -32,11 +32,11 @@ export async function authenticate(prevState: string | undefined, formData: Form
 }
 
 export async function facebookSignIn() {
-    await signIn("facebook")
+    await signIn("facebook", { redirectTo: '/account' })
 }
 
 export async function googleSignIn() {
-    await signIn("google")
+    await signIn("google", { redirectTo: '/account' })
 }
 
 export async function signOutUser() {
