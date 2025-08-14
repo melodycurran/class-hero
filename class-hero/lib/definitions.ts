@@ -7,6 +7,7 @@ export interface Nav {
 }
 
 export type User = {
+    _id: string,
     fname: string,
     lname: string,
     email: string,
