@@ -12,11 +12,11 @@ import RecentWorksheet from "@/components/ui/recentWorksheet"
 import { ProjectDataType } from "@/lib/definitions"
 import { PageProps } from "@/lib/definitions"
 
-export default async function Projects({ params }: PageProps) {
-    const { userId } = params
-    // const id = params.userId
+export default async function Projects(props: { params: Promise<{ userId: string }> }) {
+    const params = await props.params
+    const id = params.userId
 
-    const projectData = await getAllProjects(userId)
+    const projectData = await getAllProjects(id)
     if (!projectData) return
     const parsed: ProjectDataType[] = JSON.parse(projectData)
 

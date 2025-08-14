@@ -10,7 +10,7 @@ export default function StipopStickers() {
     const { canvasInit } = useCanvasInstance()
 
 
-    const appApiKey = process.env.NEXT_PUBLIC_STIPOP_API_KEY
+    const appApiKey = process.env.NEXT_STIPOP_API_KEY
     if (!appApiKey) return
 
 

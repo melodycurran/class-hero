@@ -18,7 +18,7 @@ export default function ImageKitAI() {
     useEffect(() => {
 
         async function fetchImageKitImages() {
-            const privateKey = process.env.NEXT_PUBLIC_IMAGEKIT_PRIVATE_KEY
+            const privateKey = process.env.NEXT_IMAGEKIT_PRIVATE_KEY
 
             if (!privateKey) return
             const creds = privateKey + ':'
@@ -61,7 +61,7 @@ export default function ImageKitAI() {
         if (!url) return
 
         const fabricImage = await FabricImage.fromURL(url,
-            {crossOrigin: 'anonymous'}
+            { crossOrigin: 'anonymous' }
         )
         canvasInit.add(fabricImage)
         canvasInit.renderAll()
