@@ -42,8 +42,9 @@
     "app/(public)/layout.tsx",
     "app/(public)/worksheet-generator/page.tsx",
     "lib/database.ts",
-    "context/worksheetEditorContext.jsx"
-, "context/designContext.jsx"  ],
+    "context/worksheetEditorContext.jsx",
+    "context/designContext.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -5,6 +5,7 @@ import Footer from "@/components/ui/footer"
 import { Suspense } from "react";
 import WorksheetSkeleton from "@/components/ui/worksheetSkeleton"
 import { Toaster } from "@/components/ui/sonner"
+import Providers from "./providers";
 
 export const metadata: Metadata = {
     title: "Class Hero",
@@ -19,14 +20,17 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${jua.className} `}>
-                <main>
-                    <div id="app">
-                        <Suspense fallback={<WorksheetSkeleton />}>
+                <div id="app" className="w-full h-[98vh] grid gap-2 grid-rows-[10%_1fr_20px] justify-self-center self-auto px-6 relative">
+
+                    <Suspense fallback={<WorksheetSkeleton />}>
+                        <Providers>
                             {children}
-                            <Toaster />
-                        </Suspense>
-                    </div>
-                </main>
+                        </Providers>
+                        <Toaster />
+                    </Suspense>
+
+                </div>
+
                 <Footer />
             </body>
         </html>

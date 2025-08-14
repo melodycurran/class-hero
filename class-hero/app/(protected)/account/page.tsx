@@ -22,7 +22,7 @@ export default function Dashboard() {
     if (status === 'loading') return <Loading />
 
     return (
-        <div>
+        <div className="w-full">
             <Sidebar className="p-[2rem]">
                 <SidebarContent>
                     <SidebarGroup>
@@ -32,7 +32,7 @@ export default function Dashboard() {
                                 {SidebarOptions.map((option) => (
                                     <SidebarMenuItem key={option.title}>
                                         <SidebarMenuButton asChild>
-                                            <a href={option.url}>
+                                            <a href={option.title === 'Worksheet Editor' ? `${option.url}/${session?.user?._id}` : option.url}>
                                                 <option.icon />
                                                 <span>{option.title}</span>
                                             </a>
@@ -49,12 +49,15 @@ export default function Dashboard() {
                     </form>
                 </SidebarFooter>
             </Sidebar>
-            <div className="dashboardSummaryContainer">
-                <h2> Hi, {session?.user?.fname}</h2>
-                <section><p>Membership: {`${session?.user?.account_type?.charAt(0).toUpperCase()}${session?.user?.account_type?.slice(1)}`}</p></section>
-                <div>
-                    <h3>Transaction Summary</h3>
-                </div>
+            <div className="font-sans h-full m-3 flex flex-col items-center">
+                <section className="w-full md:w-1/2 h-[100px] shadow-md mb-3 p-2 px-3 bg-slate-200 rounded-(--radius)"> Hi, {session?.user?.fname}</section>
+                <section className="w-full md:w-1/2 h-[100px] shadow-md mb-3 p-2 px-3 bg-slate-200 rounded-(--radius)"><p>Membership: {`${session?.user?.account_type?.charAt(0).toUpperCase()}${session?.user?.account_type?.slice(1)}`}</p>
+                    <p>Up to 60 designs</p>
+                </section>
+                <section className="w-full md:w-1/2 h-[100px] shadow-md mb-3 p-2 px-3 bg-slate-200 rounded-(--radius)">
+                    <p>Create beautiful Worksheet Designs for free!</p>
+                    <p></p>
+                </section>
             </div>
 
         </div>

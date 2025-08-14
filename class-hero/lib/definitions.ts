@@ -82,11 +82,11 @@ export interface CanvasDetailsProps {
 }
 
 export interface ProjectDataType {
-    projectId?: string,
+    projectId: string,
     created_at?: Date | null,
     height?: string,
-    jsonTemplate?: object | null,
-    projectName?: string,
+    jsonTemplate?: string,
+    projectName: string,
     userId?: string | null,
     width?: string
 }
@@ -95,12 +95,13 @@ export interface ProjectDataProps {
     projectId?: string,
     created_at?: Date | null,
     height?: string,
-    jsonTemplate?: object | null,
+    jsonTemplate?: string | null,
     projectName?: string,
     userId?: string | null,
     width?: string,
-    children: React.ReactNode
+    children?: React.ReactNode
 }
+
 
 export interface ColorPickerProps {
     value: string,
@@ -141,3 +142,8 @@ export type ImageKitImagesType = {
     thumbnail: string,
     url: string
 }
+
+export interface StickerProps {
+    url: string,
+}
+

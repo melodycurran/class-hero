@@ -12,13 +12,13 @@ export default async function WorksheetLibrary(props: {
     const query = searchParams?.query || ''
 
     return (
-        <>
-            <div>
-                <Suspense fallback={<WorksheetSkeleton />}>
-                    <SearchBar />
-                    <LibrarySection term={query} />
-                </Suspense >
-            </div >
-        </>
+
+        <div className="w-full">
+            <Suspense fallback={<WorksheetSkeleton />}>
+                <SearchBar />
+                <LibrarySection term={query} />
+            </Suspense >
+        </div >
+
     )
 }

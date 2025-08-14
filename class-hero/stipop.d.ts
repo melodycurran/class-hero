@@ -1,0 +1,1 @@
+declare module 'stipop-react-sdk/dist/SearchComponent'

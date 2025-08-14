@@ -12,9 +12,8 @@ export default function ImageKitAI() {
     const [images, setImages] = useState<ImageKitImagesType[]>()
     const [url, setUrl] = useState('')
     const { canvasInit } = useCanvasInstance()
-    // const [activeObject, setActiveObject] = useState()
     const divRef = useRef(null)
-    // const [addToCanvas, setaddToCanvas] = useState(false)
+
 
     useEffect(() => {
 
@@ -61,7 +60,9 @@ export default function ImageKitAI() {
     async function AddImageToCanvas() {
         if (!url) return
 
-        const fabricImage = await FabricImage.fromURL(url)
+        const fabricImage = await FabricImage.fromURL(url,
+            {crossOrigin: 'anonymous'}
+        )
         canvasInit.add(fabricImage)
         canvasInit.renderAll()
 

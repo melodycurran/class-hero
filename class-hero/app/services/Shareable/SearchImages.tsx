@@ -36,11 +36,10 @@ export default function SearchImages() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('data', data)
+        
                     return data
                 })
             setImageList(result?.results)
-            console.log('Result', result?.results)
         }
 
         fetchImageList(searchTerm)
@@ -50,7 +49,9 @@ export default function SearchImages() {
 
 
     async function handleSendtoCanvas(url: string) {
-        const canvasRef = await FabricImage.fromURL(url)
+        const canvasRef = await FabricImage.fromURL(url,
+            { crossOrigin: 'anonymous' }
+        )
         canvasInit.add(canvasRef)
         canvasInit.renderAll()
     }

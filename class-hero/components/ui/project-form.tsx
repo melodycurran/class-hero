@@ -1,22 +1,34 @@
 'use client'
-import { CheckCheck } from "lucide-react"
-import { useActionState, useState, useEffect, useRef } from "react"
+import { useActionState, useState, useEffect } from "react"
 import { ProjectDataType } from '@/lib/definitions'
 import { ProjectDataProps } from "@/lib/definitions"
 import { useSession } from "next-auth/react"
-import { useDebounce } from "use-debounce"
 import { updateFields } from "@/lib/actions"
 import CanvasContext from "@/context/worksheetEditorContext"
 import Loading from "./loading"
+import { useCanvasInstance } from "./providerDiv";
+import { Save, Download } from "lucide-react"
+import { Button } from "./button"
+import { toast } from "sonner"
+import jsPDF from 'jspdf';
 
 
 
-export default function SaveProjectToDbForm({ projectId, projectName, width, height, children }: ProjectDataProps) {
-    const [data, setData] = useState<ProjectDataType>({})
+export default function SaveProjectToDbForm({ projectId, projectName, width, height, jsonTemplate, children }: ProjectDataProps) {
+    const [data, setData] = useState<ProjectDataType>({
+        projectId: '',
+        created_at: null,
+        height: '',
+        jsonTemplate: '',
+        projectName: '',
+        userId: null,
+        width: ''
+    })
     const { data: session, status } = useSession()
-    const [debouncedState] = useDebounce(data, 5000)
-    const formRef = useRef<HTMLFormElement | null>(null)
     const [state, action, isPending] = useActionState(updateFields, undefined)
+    const { canvasInit } = useCanvasInstance()
+    const [canvasObj, setCanvasObj] = useState('')
+
 
     useEffect(() => {
         setData({
@@ -24,15 +36,9 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
             projectName: projectName || '',
             width: width || '',
             height: height || '',
+            jsonTemplate: jsonTemplate || ''
         })
-    }, [projectId, projectName, width, height])
-
-
-    useEffect(() => {
-        if (formRef.current) {
-            formRef.current.dispatchEvent(new Event('submit', { bubbles: true }))
-        }
-    }, [debouncedState])
+    }, [projectId, projectName, width, height, jsonTemplate])
 
 
     useEffect(() => {
@@ -43,13 +49,43 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
     }, [state])
 
 
+    useEffect(() => {
+
+        if (!canvasInit) return
+        const stringifyCanvasData = JSON.stringify(canvasInit.toJSON())
+
+        setCanvasObj(stringifyCanvasData)
+
+    }, [canvasInit, state])
+
+    function handleExport() {
+        const canvasWidth = Number(width)
+        const canvasHeight = Number(height)
+
+        const pngImg = canvasInit?.toDataURL({
+            format: 'png',
+            quality: 1,
+            multiplier: 2
+        })
+
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'px',
+            format: [canvasWidth, canvasHeight],
+        })
+
+        pdf.addImage(pngImg, 'PNG', 0, 0, canvasWidth, canvasHeight)
+        pdf.save(projectName + '.pdf')
+    }
+
+
     if (status === 'loading') {
         return <Loading />
     }
 
     return (
         <>
-            <form className="w-full ml-3 relative" ref={formRef} action={action}>
+            <form className="w-full ml-3 relative" action={action}>
                 <div className="w-full flex flex-col items-center">
 
                     <input type="hidden" name="userId" defaultValue={session?.user?._id} />
@@ -72,14 +108,21 @@ export default function SaveProjectToDbForm({ projectId, projectName, width, hei
                             ...data,
                             height: e.target.value || ''
                         })} />px
+                        <input type="hidden" name="jsonTemplate" value={canvasObj} />
                     </div>
                 </div>
 
-                <div className="text-xs w-[30%] h-[2rem] flex gap-1 items-center absolute top-0">{isPending ? <p className="animation-pulse">Saving...</p> : <><p>Saved</p><CheckCheck className="w-3" /></>}</div>
+                <Button title="Save Project" type="submit" className="text-xs h-[2rem] flex gap-1 items-center absolute top-0 ">
+                    {isPending ? <Loading /> : <Save />}
+                </Button>
             </form>
+            <Button title="Export as PDF" className="text-xs h-[2rem] flex gap-1 items-center absolute top-20 left-43" onClick={handleExport}>
+                <Download />
+            </Button>
             <CanvasContext.Provider value={data}>
                 {children}
             </CanvasContext.Provider>
+
         </>
     )
 }

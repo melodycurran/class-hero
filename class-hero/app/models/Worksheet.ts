@@ -9,16 +9,18 @@ interface WorksheetType extends Document {
     short_desc: string
 }
 
-//Change schema to reflect the most accurate shape
-const worksheetSchema: Schema<WorksheetType> = new Schema({
+const WorksheetSchema: Schema<WorksheetType> = new Schema({
     image: String,
     alt: String,
     title: String,
     price: Number,
     long_desc: String,
     short_desc: String
-})
+},
+    {
+        collection: 'worksheets'
+    })
 
-const Worksheet: Model<WorksheetType> = mongoose.models.Worksheet ? (mongoose.models.Worksheet as Model<WorksheetType>) : (mongoose.model<WorksheetType>('Worksheet', worksheetSchema))
+const Worksheet: Model<WorksheetType> = mongoose.models.Worksheet ? (mongoose.models.Worksheet as Model<WorksheetType>) : (mongoose.model<WorksheetType>('Worksheet', WorksheetSchema))
 
 export default Worksheet

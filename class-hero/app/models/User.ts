@@ -7,8 +7,8 @@ interface UserType extends Document {
     ph: string,
     pw: string,
     type: string,
-    account_type: string
-    created_at: Date
+    account_type: string,
+    created_at: Date,
 }
 
 const UserSchema: Schema<UserType> = new Schema({
@@ -19,9 +19,11 @@ const UserSchema: Schema<UserType> = new Schema({
     pw: String,
     type: String,
     account_type: String,
-    created_at: Date
+    created_at: { type: Date, default: Date.now }
+}, {
+    collection: 'users'
 })
 
-const UserData: Model<UserType> = mongoose.models.User ? (mongoose.models.User as Model<UserType>) : (mongoose.model<UserType>('User', UserSchema))
+const User: Model<UserType> = mongoose.models.User ? (mongoose.models.User as Model<UserType>) : (mongoose.model<UserType>('User', UserSchema))
 
-export default UserData
+export default User

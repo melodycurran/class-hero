@@ -10,25 +10,25 @@ import TextSetting from "./Components/AddText"
 
 export const WorksheetEditorMenu = [
     {
-        name: 'Home',
-        path: '/worksheet-editor',
-        icon: HomeIcon,
+        name: 'Projects',
+        path: '/worksheet-editor/projects',
+        icon: ComponentIcon,
     },
     {
         name: 'Account',
         path: '/account',
         icon: CircleUserIcon,
     },
-    {
-        name: 'Projects',
-        path: '/worksheet-editor/projects',
-        icon: ComponentIcon,
-    },
-    {
-        name: 'Templates',
-        path: '/worksheet-editor/templates',
-        icon: LayoutTemplateIcon,
-    },
+    // {
+    //     name: 'Projects',
+    //     path: '/worksheet-editor/projects',
+    //     icon: ComponentIcon,
+    // },
+    // {
+    //     name: 'Templates',
+    //     path: '/worksheet-editor/templates',
+    //     icon: LayoutTemplateIcon,
+    // },
 ]
 
 export const WorksheetCanvasSize = [
@@ -61,11 +61,11 @@ export const WorksheetCanvasSize = [
 ]
 
 export const WorksheetProjectMenu = [
-    {
-        name: "Template",
-        desc: "View Templates",
-        icon: LayoutTemplateIcon
-    },
+    // {
+    //     name: "Template",
+    //     desc: "View Templates",
+    //     icon: LayoutTemplateIcon
+    // },
     {
         name: "Text",
         desc: "Add text and heading",

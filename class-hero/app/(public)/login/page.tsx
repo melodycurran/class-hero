@@ -36,7 +36,7 @@ export default function Login() {
                 </div>
             </Suspense>
             <div className="leading-8 text-[10px] text-center">
-                <Link href="/signup" className="text-[10px]">Create Account</Link> | <Link href="/newpassword" className="text-[10px]">Forgot Password</Link>
+                <Link href="/signup" className="text-[10px] hover:pointer-cursor">Create Account</Link> | <Link href="/newpassword" className="text-[10px]">Forgot Password</Link>
             </div>
         </div>
     )

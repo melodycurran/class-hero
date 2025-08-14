@@ -15,9 +15,9 @@ export default function CanvasSize() {
     }
 
     return (
-        <div className="flex gap-8 items-center">
+        <div className="flex gap-8 items-center ">
             {WorksheetCanvasSize.map((size, index) => (
-                <div key={index} id="canvasSize" className="text-[10px] hover:bg-red-500" onClick={() => handleCanvasSize(size.width, size.height)}>
+                <div key={index} className="text-[10px] hover:scale-105 translate-all flex flex-col items-center" onClick={() => handleCanvasSize(size.width, size.height)}>
                     <size.icon />
                     <h2>{size.name}</h2>
                 </div>

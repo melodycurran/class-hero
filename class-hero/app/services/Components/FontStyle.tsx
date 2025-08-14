@@ -3,13 +3,6 @@ import { Toggle } from "@/components/ui/toggle"
 import { Italic, Bold, Underline } from "lucide-react"
 import { MdFormatOverline } from 'react-icons/md';
 import { FaStrikethrough } from "react-icons/fa6";
-import { CgBorderStyleSolid, CgBorderStyleDashed, CgBorderStyleDotted } from "react-icons/cg";
-import { useState } from "react"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
 
 export default function FontStyle() {
     const { canvasInit } = useCanvasInstance()
@@ -33,7 +26,6 @@ export default function FontStyle() {
             activeObject?.set({
                 fontStyle: activeObject?.fontStyle === 'italic' ? 'normal' : 'italic'
             })
-
 
         }
         if (style === 'underline') {
@@ -81,23 +73,12 @@ export default function FontStyle() {
                 onClick={() => onStyleClick('overline')}>
                 <MdFormatOverline />
             </Toggle>
-            {/* <Toggle size="sm" aria-label="Toggle linethrough"
-                defaultPressed={activeObject?.linethrough} */}
-            {/* // onClick={() => onStyleClick('linethrough')} */}
-            {/* > */}
-            <Popover>
-                <PopoverTrigger asChild>
-                    <FaStrikethrough />
-                </PopoverTrigger>
-                <PopoverContent className="font-sans text-2xl w-full p-3">
-                    <CgBorderStyleSolid className="hover:cursor-pointer hover:bg-(--french-gray) px-1" />
-                    <CgBorderStyleDashed className="hover:cursor-pointer hover:bg-(--french-gray) px-1" />
-                    <CgBorderStyleDotted className="hover:cursor-pointer hover:bg-(--french-gray) px-1" />
-                </PopoverContent>
-            </Popover>
+            <Toggle size="sm" aria-label="Toggle linethrough"
+                defaultPressed={activeObject?.linethrough}
+                onClick={() => onStyleClick('linethrough')}>
+                <FaStrikethrough />
+            </Toggle>
 
-
-            {/* </Toggle> */}
         </div>
     )
 }

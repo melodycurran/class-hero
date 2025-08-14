@@ -9,7 +9,7 @@ export const SidebarOptions = [
 
     {
         title: "Worksheet Editor",
-        url: "/worksheet-editor",
+        url: "/worksheet-editor/projects",
         icon: PencilRulerIcon
     },
     {

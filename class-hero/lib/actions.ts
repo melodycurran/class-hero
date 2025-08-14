@@ -1,17 +1,18 @@
 'use server'
 import { signIn, signOut } from '@/auth'
 import { AuthError } from 'next-auth'
-import { getProjectData, saveNewUserData } from '@/lib/query'
+import { saveNewUserData } from '@/lib/userQueries'
+import { getOneProject } from '@/lib/projectQueries'
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
 import { redirect } from 'next/navigation'
-import { FormState } from './definitions'
+import { FormState } from '@/lib/definitions'
 import { isValidPhoneNumber, parsePhoneNumberWithError } from 'libphonenumber-js'
-import { insertWorksheetFromEditor } from '@/lib/query'
+import { insertWorksheetFromEditor } from '@/lib/projectQueries'
 import { nanoid } from 'nanoid'
-import { getDifferentKeys } from './utils'
-import { compareObjects } from './utils'
-import { updateProjectFields } from '@/lib/query'
+import { getDifferentKeys } from '@/lib/utils'
+import { compareObjects } from '@/lib/utils'
+import { updateProjectFields } from '@/lib/projectQueries'
 
 
 export async function authenticate(prevState: string | undefined, formData: FormData) {
@@ -110,7 +111,7 @@ export async function registerUser(prevState: FormState | undefined, formData: F
         }
 
         const response = await saveNewUserData(newData)
-        if (response?.success) {
+        if (response) {
             redirect('/login?registered=true')
         }
 
@@ -141,8 +142,7 @@ export async function saveDesignData(prevState: any | undefined, formData: FormD
 
         const response = await insertWorksheetFromEditor(projectId, rawDesignData)
 
-        console.log('Response', response) //Needs to be deleted
-        if (response?.success) {
+        if (response) {
             redirect(`/worksheet-editor/${projectId}`)
         }
 
@@ -159,13 +159,16 @@ export async function saveDesignData(prevState: any | undefined, formData: FormD
 }
 
 export async function updateFields(prevState: any | undefined, formData: FormData) {
+
     try {
+
         const updatedData = {
-            userId: formData.get('userId'),
-            projectId: formData.get('projectId'),
-            projectName: formData.get('projectName'),
-            width: formData.get('width'),
-            height: formData.get('height'),
+            projectId: formData?.get('projectId'),
+            projectName: formData?.get('projectName'),
+            width: formData?.get('width'),
+            height: formData?.get('height'),
+            userId: formData?.get('userId'),
+            jsonTemplate: formData?.get('jsonTemplate'),
         }
 
         const projectId = updatedData?.projectId
@@ -173,7 +176,7 @@ export async function updateFields(prevState: any | undefined, formData: FormDat
 
         if (typeof projectId !== 'string') return
 
-        projectData = await getProjectData(projectId)
+        projectData = await getOneProject(projectId)
 
         if (!projectData || 'message' in projectData) throw new Error
 
@@ -199,4 +202,22 @@ export async function updateFields(prevState: any | undefined, formData: FormDat
         console.error('Error', error)
         return error
     }
+}
+
+export async function processPayment(prevState: any | undefined, formData: FormData) {
+    const paymentData = {
+        fname: formData.get('fname'),
+        lname: formData.get('lname'),
+        email: formData.get('email'),
+        cardNum: formData.get('cardNum'),
+        cvv: formData.get('cvv'),
+    }
+
+    const success = true
+
+    if (!success) {
+        return { success: false, message: 'Payment unsuccessful!' }
+    }
+
+    return { success: true, message: 'Payment successful!' }
 }

@@ -21,7 +21,7 @@ export default function UploadImage() {
 
         const file = e.target.files && e.target.files[0]
         if (file === null) return
-        
+
         if (file && !file?.type.startsWith('image/')) {
             toast(`${file?.type} is not valid. Upload image types only!`)
             setUploading(false)
@@ -42,7 +42,9 @@ export default function UploadImage() {
             setUploading(false)
 
             if (typeof imageRef === 'object' && imageRef !== null) {
-                const imageReftoCanvas = await FabricImage.fromURL(imageRef?.url)
+                const imageReftoCanvas = await FabricImage.fromURL(imageRef?.url,
+                    { crossOrigin: 'anonymous' }
+                )
 
                 canvasInit.add(imageReftoCanvas)
                 canvasInit.renderAll()

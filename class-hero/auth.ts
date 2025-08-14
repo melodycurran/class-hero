@@ -5,7 +5,7 @@ import Facebook from 'next-auth/providers/facebook';
 import Google from 'next-auth/providers/google'
 import z from 'zod'
 import connectDB from "./lib/database";
-import UserData from "./app/models/UserData";
+import UserData from "./app/models/User";
 import bcrypt from 'bcryptjs'
 import { User } from "@/lib/definitions"
 
