@@ -35,7 +35,7 @@ export default function Login() {
                     <GmailSignIn />
                 </div>
             </Suspense>
-            <div className="leading-8 text-[10px] text-center">
+            <div className="leading-8 text-[10px] text-center relative">
                 <Link href="/signup" className="text-[10px] hover:pointer-cursor">Create Account</Link> | <Link href="/newpassword" className="text-[10px]">Forgot Password</Link>
             </div>
         </div>

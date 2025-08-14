@@ -8,7 +8,7 @@ export default async function IndividualLibraryWorksheet(props: { params: Promis
 
     const worksheetData = await processIndividualWorksheet(id)
     return (
-        <div className="my-[1rem] mx-auto w-full md:w-1/2 lg:w-2/5 font-sans text-sm pb-6">
+        <div className="my-[1rem] mx-auto w-full md:w-1/2 lg:w-2/5 font-sans text-sm pb-6 relative">
             {worksheetData &&
                 <div className="border border-(--ring) border-solid rounded-(--radius) shadow-lg bg-white">
                     <section className="w-5/6 my-[1.5rem] mx-auto flex flex-col items-center">

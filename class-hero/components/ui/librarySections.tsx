@@ -8,7 +8,7 @@ export default async function LibrarySection({ term }: { term: string }) {
     const resData = await processSearchQuery(term)
 
     return (
-        <div className="flex justify-center gap-2 flex-wrap">
+        <div className="flex justify-center gap-2 flex-wrap relative">
             {resData && resData.map((data, index) => (
                 <div key={index} className="w-1/2 max-w-[180px] border border-(--ring) border-solid rounded-(--radius) p-2.5 bg-white flex-1">
                     <Link href={`/library/${data._id}`}>

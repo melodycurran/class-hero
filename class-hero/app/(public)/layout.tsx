@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Class Hero",
-  description: "A library of K-12 printable classroom worksheet",
+  description: "A library and editor of K-12 printable classroom worksheet",
 };
 
 export default function RootLayout({

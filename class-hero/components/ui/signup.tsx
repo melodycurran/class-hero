@@ -19,7 +19,7 @@ export default function SignUpForm() {
     const [country, setCountry] = useState('us')
 
     return (
-        <form action={formAction} className="leading-5 flex flex-col w-full font-sans text-[12px] mt-5">
+        <form action={formAction} className="leading-5 flex flex-col w-full font-sans text-[12px] mt-5 relative">
 
             <div className={pageNumber === 1 ? 'block' : 'hidden'}>
                 <label htmlFor="fname">Firstname: </label>
